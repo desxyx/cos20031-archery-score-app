@@ -1,0 +1,26 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        NEXT_PUBLIC_BASE_PATH: /cos20031_app
+    image: cos20031-app:latest
+    container_name: cos20031-app
+    restart: unless-stopped
+    environment:
+      DB_HOST: cos20031-db
+      DB_PORT: 3306
+      DB_USER: archery_scorer
+      DB_PASSWORD: "StrongPass_SC!7"
+      DB_NAME: cos20031
+      TZ: Australia/Melbourne
+      NEXT_PUBLIC_BASE_PATH: /cos20031_app
+      AUTH_COOKIE_SECRET: "6f4bb7d611718e673ae84c24c0c581f5610f51e164c14744e3cf8eb768630a59"
+    networks:
+      - island
+
+networks:
+  island:
+    external: true
+    name: test_environment_island_default
